@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(Routes.V1_BASE_PATH)
+@RequestMapping(Routes.V1_BASE_PATH + "/user")
 public class RegistrationController {
     @Autowired
     private UserService userService;
