@@ -1,12 +1,11 @@
 package alpha1.o.com.genericeventmgtsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Set;
 
 @Getter
 @Setter
@@ -18,11 +17,13 @@ public class Venue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long venueId;
     private String venueName;
-    // venue Address
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "addressId")
-    private Address address;
     private Long venueCapacity;
-    @OneToMany(mappedBy = "eventVenue", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Event> events;
+    // User Who Created Venue
+    @ManyToOne
+    private User user;
+    // Venue Address
+    @ManyToOne
+    private Address address;
+
+
 }

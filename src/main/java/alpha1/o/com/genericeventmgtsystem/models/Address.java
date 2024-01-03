@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -25,6 +28,7 @@ public class Address {
     @JsonBackReference
     private User user;
     // Venue Address (1 to 1  ) R
-    @OneToOne(mappedBy = "address")
-    private Venue venue;
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+    private List<Venue> venueList = new ArrayList<>();
+
 }

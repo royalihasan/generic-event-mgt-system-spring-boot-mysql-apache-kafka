@@ -7,7 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,7 +32,7 @@ public class User {
     @JoinColumn(name = "address_id", referencedColumnName = "addressId")
     private Address address;
     private Boolean enable;
-
-    @OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Event> organizedEvents;
+    // map with venue
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Venue> venueList = new ArrayList<>();
 }
