@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,6 +22,7 @@ public class Venue {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "addressId")
     private Address address;
-
     private Long venueCapacity;
+    @OneToMany(mappedBy = "eventVenue", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Event> events;
 }

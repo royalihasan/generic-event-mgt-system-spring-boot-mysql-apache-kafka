@@ -1,5 +1,6 @@
 package alpha1.o.com.genericeventmgtsystem.dto;
 
+import alpha1.o.com.genericeventmgtsystem.models.Address;
 import lombok.*;
 
 @Data
@@ -14,6 +15,7 @@ public class UserDto {
     private String email;
     private String role;
     private String description;
+    private Address address;
 
 
 

@@ -1,5 +1,6 @@
 package alpha1.o.com.genericeventmgtsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Address {
     private String zipCode;
     // User Address Detail User ( 1 to 1 ) R
     @OneToOne(mappedBy = "address")
+    @JsonBackReference
     private User user;
     // Venue Address (1 to 1  ) R
     @OneToOne(mappedBy = "address")

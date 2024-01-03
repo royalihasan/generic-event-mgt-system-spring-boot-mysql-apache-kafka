@@ -2,12 +2,18 @@ package alpha1.o.com.genericeventmgtsystem.models;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -26,22 +32,6 @@ public class User {
     private Address address;
     private Boolean enable;
 
-
-
-    public User() {
-    }
-
-    public User(Long userId, String userIdNumber, String firstName, String lastName, String username, String password, String email, String role, String description, Address address, Boolean enable) {
-        this.userId = userId;
-        this.userIdNumber = userIdNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.role = role;
-        this.description = description;
-        this.address = address;
-        this.enable = enable;
-    }
+    @OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Event> organizedEvents;
 }
