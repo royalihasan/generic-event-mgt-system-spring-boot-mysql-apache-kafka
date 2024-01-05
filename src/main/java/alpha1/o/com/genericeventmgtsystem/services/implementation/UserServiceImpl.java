@@ -1,5 +1,6 @@
 package alpha1.o.com.genericeventmgtsystem.services.implementation;
 
+import alpha1.o.com.genericeventmgtsystem.common.AppConstants;
 import alpha1.o.com.genericeventmgtsystem.dto.UserDto;
 import alpha1.o.com.genericeventmgtsystem.exceptions.ApiRequestException;
 import alpha1.o.com.genericeventmgtsystem.models.User;
@@ -9,6 +10,7 @@ import alpha1.o.com.genericeventmgtsystem.utils.Validation;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -21,6 +23,8 @@ public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
 
     @Override
@@ -100,6 +104,11 @@ public class UserServiceImpl implements UserService {
         this.userRepository.delete(user);
     }
 
+    @Override
+    public boolean publishUserId(String Id) {
+        kafkaTemplate.send(AppConstants.NOTIFY_ATTENDEE,Id);
+        return true;
+    }
 
     //Model Mapper
     private User dtoToUser(UserDto userDto) {

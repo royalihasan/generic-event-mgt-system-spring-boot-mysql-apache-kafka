@@ -19,6 +19,7 @@ public interface UserService {
     List<UserDto> getAllUser();
 
     void deleteUser(Long userID);
+    boolean publishUserId(String Id);
 
 
 }
