@@ -3,6 +3,7 @@ package alpha1.o.com.genericeventmgtsystem.services.implementation;
 import alpha1.o.com.genericeventmgtsystem.common.AppConstants;
 import alpha1.o.com.genericeventmgtsystem.dto.UserDto;
 import alpha1.o.com.genericeventmgtsystem.exceptions.ApiRequestException;
+import alpha1.o.com.genericeventmgtsystem.models.Address;
 import alpha1.o.com.genericeventmgtsystem.models.User;
 import alpha1.o.com.genericeventmgtsystem.repository.UserRepository;
 import alpha1.o.com.genericeventmgtsystem.services.UserService;
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
+    private Address address;
 
 
     @Override
@@ -64,6 +66,7 @@ public class UserServiceImpl implements UserService {
         User user = this.dtoToUser(userDto);
 
         User savedUser = this.userRepository.save(user);
+
         return this.userTodto(savedUser);
     }
 
@@ -106,7 +109,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean publishUserId(String Id) {
-        kafkaTemplate.send(AppConstants.NOTIFY_ATTENDEE,Id);
+        kafkaTemplate.send(AppConstants.NOTIFY_ATTENDEE, Id);
         return true;
     }
 

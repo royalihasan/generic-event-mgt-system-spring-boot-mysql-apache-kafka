@@ -1,27 +1,28 @@
 package alpha1.o.com.genericeventmgtsystem.models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/*
+ * User is generic Entity which hold [ admin , Manager , Team , Organizer ... ] data
+ * */
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long userId;
     @Column(unique = true)
     private String userIdNumber;
+    private String userPassKey;
     private String firstName;
     private String lastName;
     @Column(unique = true)
@@ -31,11 +32,10 @@ public class User {
     private String email;
     private String role;
     private String description;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "addressId")
-    private Address address;
     private Boolean enable;
-    // map with venue
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Venue> venueList = new ArrayList<>();
+    // one to one mapping with user's Address
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_address_id", referencedColumnName = "address_id")
+    private Address address;
+
 }

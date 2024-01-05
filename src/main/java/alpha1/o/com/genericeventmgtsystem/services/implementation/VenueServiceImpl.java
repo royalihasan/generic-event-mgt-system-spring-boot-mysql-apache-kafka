@@ -1,9 +1,6 @@
 package alpha1.o.com.genericeventmgtsystem.services.implementation;
 
 import alpha1.o.com.genericeventmgtsystem.dto.VenueDto;
-import alpha1.o.com.genericeventmgtsystem.exceptions.ApiRequestException;
-import alpha1.o.com.genericeventmgtsystem.models.Address;
-import alpha1.o.com.genericeventmgtsystem.models.User;
 import alpha1.o.com.genericeventmgtsystem.models.Venue;
 import alpha1.o.com.genericeventmgtsystem.repository.AddressRepo;
 import alpha1.o.com.genericeventmgtsystem.repository.UserRepository;
@@ -26,13 +23,14 @@ public class VenueServiceImpl implements VenueService {
 
     @Override
     public VenueDto createVenue(VenueDto venueDto, Long userId, Long addressId) {
-        Venue venue = this.modelMapper.map(venueDto, Venue.class);
-        User user = userRepository.findById(userId).orElseThrow(() -> new ApiRequestException("User Not found"));
-        Address address = addressRepo.findById(addressId).orElseThrow(() -> new ApiRequestException("Address Not found"));
-        venue.setAddress(address);
-        venue.setUser(user);
-        Venue newVenue = this.venueRepository.save(venue);
-        return this.modelMapper.map(newVenue, VenueDto.class);
+//        Venue venue = this.modelMapper.map(venueDto, Venue.class);
+//        User user = userRepository.findById(userId).orElseThrow(() -> new ApiRequestException("User Not found"));
+//        Address address = addressRepo.findById(addressId).orElseThrow(() -> new ApiRequestException("Address Not found"));
+//        venue.setAddress(address);
+//        venue.setUser(user);
+//        Venue newVenue = this.venueRepository.save(venue);
+//        return this.modelMapper.map(newVenue, VenueDto.class);
+        return null;
     }
 
     private Venue dtoToVenue(VenueDto venueDto) {

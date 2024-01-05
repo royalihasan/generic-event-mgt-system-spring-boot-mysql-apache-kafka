@@ -20,9 +20,6 @@ public class Venue {
     private Long venueCapacity;
     // User Who Created Venue
     @ManyToOne
-    private User user;
-    // Venue Address
-    @ManyToOne
     private Address address;
 
 

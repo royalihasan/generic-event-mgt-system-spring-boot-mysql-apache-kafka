@@ -24,13 +24,7 @@ public class Event {
     private String image;
 
     private int capacity;
-    @ManyToOne
-    @JoinColumn(name = "venue_id")
-    private Venue eventVenue;
-    // Event Organizer
-    @ManyToOne
-    @JoinColumn(name = "organizer_id")
-    private User eventOrganizer;
+
 
     @Enumerated(EnumType.STRING)
     private EventStatus status;
