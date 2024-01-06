@@ -15,6 +15,7 @@
     <description>Spring Boot 3 , MYSQL , Apacha Kafka</description>
     <properties>
         <java.version>21</java.version>
+        <keycloak.version>22.0.4</keycloak.version>
     </properties>
     <dependencies>
         <dependency>
@@ -72,6 +73,16 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-admin-client</artifactId>
+            <version>${keycloak.version}</version>
         </dependency>
     </dependencies>
 

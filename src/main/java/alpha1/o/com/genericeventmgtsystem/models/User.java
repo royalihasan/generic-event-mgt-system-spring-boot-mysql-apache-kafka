@@ -38,4 +38,5 @@ public class User {
     @JoinColumn(name = "FK_address_id", referencedColumnName = "address_id")
     private Address address;
 
+
 }

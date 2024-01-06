@@ -7,6 +7,7 @@ import alpha1.o.com.genericeventmgtsystem.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,7 @@ public class RegistrationController {
 
     // Get All User
     @GetMapping("/users")
+
     public ResponseEntity<List<UserDto>> getAllUser() {
         return (ResponseEntity.ok(userService.getAllUser()));
 

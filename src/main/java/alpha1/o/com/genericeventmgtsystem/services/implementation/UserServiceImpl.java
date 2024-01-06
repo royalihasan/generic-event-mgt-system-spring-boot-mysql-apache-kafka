@@ -9,6 +9,9 @@ import alpha1.o.com.genericeventmgtsystem.repository.UserRepository;
 import alpha1.o.com.genericeventmgtsystem.services.UserService;
 import alpha1.o.com.genericeventmgtsystem.utils.Validation;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
+import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.resource.RealmResource;
+import org.keycloak.admin.client.resource.UsersResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -27,6 +30,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
     private Address address;
+    @Autowired
+    private Keycloak keycloak;
 
 
     @Override
@@ -111,6 +116,14 @@ public class UserServiceImpl implements UserService {
     public boolean publishUserId(String Id) {
         kafkaTemplate.send(AppConstants.NOTIFY_ATTENDEE, Id);
         return true;
+    }
+
+    @Override
+    public boolean sendVerificationEmail(Long userId) {
+        RealmResource realmResource = keycloak.realm("EventManagementSystem");
+        UsersResource usersResource = realmResource.users();
+        usersResource.get(String.valueOf(userId)).sendVerifyEmail();
+        return false;
     }
 
     //Model Mapper
