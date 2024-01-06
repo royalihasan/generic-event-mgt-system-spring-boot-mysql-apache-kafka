@@ -12,3 +12,11 @@ jwt:
     converter:
       resource-id: event-mgt-sys
       principle-attribute: preferred_username
+keycloak:
+  realm: spring-boot-code
+  domain: xxx
+  adminClientId: admin-cli
+  adminClientSecret: qOEw44VUqwNOjP3YxLBDU7PRMzN10ueC
+  client: authenticationClientId
+  urls:
+    auth: https://${keycloak.domain}
