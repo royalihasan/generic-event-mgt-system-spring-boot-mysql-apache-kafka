@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class Beans {
+public class KeyCloakConfig {
     @Value("${keycloak.adminClientId}")
     private String adminClientId;
     @Value("${keycloak.adminClientSecret}")

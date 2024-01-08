@@ -4,19 +4,19 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/realms/EventManagementSystem
+          issuer-uri: http://localhost:8080/realms/event-mgt-sys
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 
 jwt:
   auth:
     converter:
-      resource-id: event-mgt-sys
-      principle-attribute: preferred_username
+      resource-id: client_event-mgt-sys
+      principle-attribute: royalihasan
 keycloak:
-  realm: spring-boot-code
-  domain: xxx
-  adminClientId: admin-cli
-  adminClientSecret: qOEw44VUqwNOjP3YxLBDU7PRMzN10ueC
+  realm: event-mgt-sys
+  domain: localhost:8080
+  adminClientId: client_event-mgt-sys
+  adminClientSecret: nXdmia0SlJSyDI3PfvmZObeOhBZTA1GR
   client: authenticationClientId
   urls:
     auth: https://${keycloak.domain}

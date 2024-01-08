@@ -7,14 +7,15 @@ import alpha1.o.com.genericeventmgtsystem.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static alpha1.o.com.genericeventmgtsystem.common.Routes.*;
+
 @RestController
-@RequestMapping(Routes.V1_BASE_PATH)
+@RequestMapping(V1_BASE_PATH)
 public class RegistrationController {
     @Autowired
     private UserService userService;
